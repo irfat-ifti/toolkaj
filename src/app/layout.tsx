@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -11,17 +11,37 @@ import {
   getSoftwareAppSchema,
   getFaqSchema,
 } from "@/lib/seo-config";
+import { AppProvider } from "@/context/AppContext";
+import Script from "next/script";
 
+// Optimize Font Loading with display: "swap" and system fallbacks to prevent FOIT
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+  display: "swap",
+  preload: true,
+  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#070b14" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -71,9 +91,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { AppProvider } from "@/context/AppContext";
-import Script from "next/script";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -82,6 +99,12 @@ export default function RootLayout({
   return (
     <html lang="bn" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        {/* Preconnect & DNS-Prefetch for high-speed third-party resource negotiation */}
+        <link rel="preconnect" href="https://abscloud.org" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://bauval.org" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://abscloud.org" />
+        <link rel="dns-prefetch" href="https://bauval.org" />
+
         {/* Immediate Theme Initialization Script (Default: Light) */}
         <script
           dangerouslySetInnerHTML={{
@@ -97,6 +120,7 @@ export default function RootLayout({
             `,
           }}
         />
+
         {/* Schema.org Structured Data */}
         <script
           type="application/ld+json"
@@ -117,13 +141,14 @@ export default function RootLayout({
 
         {/* ========================================================================= */}
         {/* ADSTERRA ADS - GLOBAL SCRIPTS (পপ-আন্ডার ও সোশ্যাল বার অ্যাড) */}
+        {/* strategy="lazyOnload" ব্যবহার করা হয়েছে যাতে পেজের ফার্স্ট পেইন্ট ও TBT ব্লক না হয় */}
         {/* ========================================================================= */}
         {/* 1. Popunder_1: পুরো ওয়েবসাইটে ব্যাকগ্রাউন্ড পপ-আন্ডার অ‍্যাড */}
         <Script
           id="adsterra-popunder"
           data-cfasync="false"
           src="https://abscloud.org/1/815e86f4e08b36fd26cb38840d438e52"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
 
         {/* 2. SocialBar_1: পুরো ওয়েবসাইটে ফ্লোটিং সোশ্যাল বার / নোটিফিকেশন অ‍্যাড */}
@@ -131,7 +156,7 @@ export default function RootLayout({
           id="adsterra-socialbar"
           data-cfasync="false"
           src="https://bauval.org/14/b4e79b61ef0a45407d04cc8876732764"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body
@@ -144,13 +169,15 @@ export default function RootLayout({
           {/* ========================================================================= */}
           {/* ADSTERRA ADS - 468x60 BANNER (468x60_1) */}
           {/* হেডারের নিচে এবং মূল কন্টেন্টের ঠিক উপরে ৪৬৮x৬০ ব্যানার অ্যাড */}
+          {/* loading="lazy" ও ফিক্সড ডাইমেনশন থাকায় CLS শিফট বা লেআউট সমস্যা হয় না */}
           {/* ========================================================================= */}
           <div className="w-full flex justify-center py-2 px-4 bg-transparent overflow-x-auto">
-            <div className="w-[468px] h-[60px] max-w-full flex justify-center items-center shrink-0">
+            <div className="w-[468px] h-[60px] max-w-full flex justify-center items-center shrink-0 min-h-[60px]">
               <iframe
                 title="Adsterra 468x60 Banner"
                 width={468}
                 height={60}
+                loading="lazy"
                 style={{ border: "none", overflow: "hidden" }}
                 scrolling="no"
                 srcDoc={`<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:transparent;overflow:hidden;}</style></head><body><script type="text/javascript">atOptions={'key':'ccb85ec4cc697d352ae588c69ba5ae56','format':'iframe','height':60,'width':468,'params':{}};</script><script type="text/javascript" src="https://bauval.org/22/ccb85ec4cc697d352ae588c69ba5ae56"></script></body></html>`}
@@ -171,7 +198,7 @@ export default function RootLayout({
               async
               data-cfasync="false"
               src="https://bauval.org/21/ee383bd1fcb1ced15a445150ab68a81b"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
           </div>
 

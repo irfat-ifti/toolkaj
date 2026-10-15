@@ -10,20 +10,23 @@ import { useApp } from "@/context/AppContext";
 interface ToolCardProps {
   tool: ToolItem;
   lang?: "bn" | "en";
+  isPinned?: boolean;
   onPinChange?: () => void;
 }
 
-export default function ToolCard({ tool, lang: propLang, onPinChange }: ToolCardProps) {
+export default function ToolCard({ tool, lang: propLang, isPinned: propIsPinned, onPinChange }: ToolCardProps) {
   const { lang: appLang } = useApp();
   const lang = propLang || appLang;
-  const [isPinned, setIsPinned] = useState(false);
+  const [internalPinned, setInternalPinned] = useState(false);
+
+  const isPinned = propIsPinned !== undefined ? propIsPinned : internalPinned;
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (propIsPinned === undefined && typeof window !== "undefined") {
       const pins = JSON.parse(localStorage.getItem("toolkaj_pinned_tools") || "[]");
-      setIsPinned(pins.includes(tool.id));
+      setInternalPinned(pins.includes(tool.id));
     }
-  }, [tool.id]);
+  }, [tool.id, propIsPinned]);
 
   const togglePin = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -33,10 +36,10 @@ export default function ToolCard({ tool, lang: propLang, onPinChange }: ToolCard
       let updated: string[];
       if (pins.includes(tool.id)) {
         updated = pins.filter((id) => id !== tool.id);
-        setIsPinned(false);
+        setInternalPinned(false);
       } else {
         updated = [...pins, tool.id];
-        setIsPinned(true);
+        setInternalPinned(true);
       }
       localStorage.setItem("toolkaj_pinned_tools", JSON.stringify(updated));
       if (onPinChange) onPinChange();

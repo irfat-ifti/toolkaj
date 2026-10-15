@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  swcMinify: true,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -13,6 +16,26 @@ const nextConfig = {
       },
     ],
   },
+  headers: async () => [
+    {
+      source: "/:all*(svg|jpg|png|webp|woff|woff2|ico)",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=31536000, immutable",
+        },
+      ],
+    },
+    {
+      source: "/_next/static/:path*",
+      headers: [
+        {
+          key: "Cache-Control",
+          value: "public, max-age=31536000, immutable",
+        },
+      ],
+    },
+  ],
   eslint: {
     ignoreDuringBuilds: true,
   },

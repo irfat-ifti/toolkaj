@@ -202,6 +202,7 @@ export default function HomePage() {
                   key={tool.id}
                   tool={tool}
                   lang={lang}
+                  isPinned={true}
                   onPinChange={loadPinnedTools}
                 />
               ))}
@@ -236,6 +237,7 @@ export default function HomePage() {
                   key={tool.id}
                   tool={tool}
                   lang={lang}
+                  isPinned={pinnedToolIds.includes(tool.id)}
                   onPinChange={loadPinnedTools}
                 />
               ))}
@@ -364,6 +366,7 @@ export default function HomePage() {
                   key={tool.id}
                   tool={tool}
                   lang={lang}
+                  isPinned={pinnedToolIds.includes(tool.id)}
                   onPinChange={loadPinnedTools}
                 />
               ))}
