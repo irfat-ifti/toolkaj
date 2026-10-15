@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ToolKaj (টুলকাজ) — অল-ইন-ওয়ান অনলাইন টুলস ও ডিজিটাল সেবা প্ল্যাটফর্ম
 
-## Getting Started
+> **Sohozkaj.com** এবং **GreatOnlineTools.com**-এর সমস্ত ফিচার একত্রিত করে আধুনিক **Next.js 14**, **Tailwind CSS**, এবং **Firebase** দিয়ে তৈরি সেরা অনলাইন টুলস হাব।
 
-First, run the development server:
+---
+
+## 🌟 ব্র্যান্ড ও ডোমেন সিলেকশন (Name Selection)
+
+- **নাম:** `ToolKaj` (বাংলায়: `টুলকাজ`)
+- **স্লোগান:** *আপনার সব ডিজিটাল কাজ ও কনভার্সন এক জায়গায় — সহজ, দ্রুত ও নিরাপদ*
+- **কেন এই নাম?**
+  1. **Google SEO ফ্রেন্ডলি:** মানুষ গুগলে "online tools bangladesh", "chakir chobi resize", "bijoy to unicode", "sohoz tools", "pdf tools bangla" ইত্যাদি লিখে সার্চ করে। `ToolKaj` শব্দটি সহজেই মানুষের মনে গেঁথে থাকে এবং ব্র্যান্ড হিসেবে বিশ্বস্ততা তৈরি করে।
+  2. **ফ্রি Vercel হোস্টিংয়ে ইনডেক্সিং:** আপনি বিনামূল্যে Vercel-এর `toolkaj.vercel.app` (অথবা আপনার পছন্দের কোনো সাবডোমেন) ব্যবহার করলেও আমাদের তৈরি **Dynamic XML Sitemap**, **Robots.txt**, এবং **Schema.org Structured Data (JSON-LD)**-এর কারণে গুগল বট দ্রুত সাইটটিকে ক্রল ও ইনডেক্স করবে।
+
+---
+
+## 🚀 অন্তর্ভুক্ত সমস্ত ফিচার ও টুলস
+
+### ১. Sohozkaj.com অনুপ্রাণিত ফিচারসমূহ:
+- 📄 **পিডিএফ টুলস (PDF Suite):**
+  - **পিডিএফ কম্প্রেস:** কোয়ালিটি বজায় রেখে PDF ফাইলের সাইজ কমান।
+  - **ইমেজ টু পিডিএফ:** যেকোনো ছবি (JPG, PNG, WebP) এক ক্লিকে A4 সাইজের PDF-এ রূপান্তর।
+  - **এনআইডি টু পিডিএফ (NID to PDF):** জাতীয় পরিচয়পত্রের উভয় পাশ স্ট্যান্ডার্ড A4 সাইজে প্রিন্ট-উপযোগী PDF তৈরি।
+  - **পাসপোর্ট টু পিডিএফ:** পাসপোর্টের বায়ো পেজ প্রিন্ট রেডি ফরম্যাটিং।
+  - **পিডিএফ মার্জ ও স্প্লিট:** একাধিক PDF জোড়া লাগানো বা পেজ আলাদা করা।
+  - **পিডিএফ ওয়াটারমার্ক:** গোপনীয়তা ও কপিরাইট রক্ষার ওয়াটারমার্ক যুক্ত করা।
+- 🖼️ **ইমেজ টুলস (Image Suite):**
+  - **সরকারি চাকরির ছবি ও স্বাক্ষর রিসাইজার (Govt Job Resizer):** বাংলাদেশ সরকারের টেলিটক ও বিপিএসসি নিয়ম অনুযায়ী হুবহু ৩০০x৩০০ পিক্সেল ছবি (সর্বোচ্চ ১০০ KB) এবং ৩০০x৮০ পিক্সেল স্বাক্ষর (সর্বোচ্চ ৬০ KB) তৈরি ও তাৎক্ষণিক ডাউনলোড।
+  - **কিউআর কোড জেনারেটর (QR Code):** ওয়েবসাইট, ওয়াইফাই, ফোন নম্বর ও টেক্সটের জন্য রঙিন কাস্টম QR কোড।
+  - **ব্যাকগ্রাউন্ড রিমুভার ও ইমেজ কনভার্টার:** ব্রাউজারেই স্বচ্ছ ব্যাকগ্রাউন্ড তৈরি ও ফরম্যাট চেঞ্জ।
+- ✍️ **টেক্সট টুলস (Text Suite):**
+  - **বিজয় ↔ ইউনিকোড কনভার্টার:** ১০০% নির্ভুল SutonnyMJ/ANSI থেকে ইউনিকোড বাংলা এবং ইউনিকোড থেকে বিজয়ে রূপান্তর।
+  - **বাংলিশ টু বাংলা টাইপিং:** ফোনেটিক বাংলিশ লিখে সহজে বাংলা ফন্টে রূপান্তর।
+  - **সংখ্যা থেকে কথায় (Number to Words):** ইংরেজি ও বাংলা সংখ্যাকে টাকা ও কথায় রূপান্তর (বাংলা ও ইংরেজিতে)।
+  - **ওয়ার্ড কাউন্টার ও টেক্সট অ্যানালাইজার:** শব্দ, অক্ষর, রিডিং টাইম এবং কেস কনভার্টার।
+- 🏛️ **নাগরিক ও দৈনন্দিন সেবা (Citizen & Career):**
+  - **ATS সিভি ও রিজিউম মেকার:** আন্তর্জাতিক স্ট্যান্ডার্ডে প্রফেশনাল রেজ্যুম তৈরি এবং সরাসরি PDF ডাউনলোড।
+  - **দরকারি লিংক ডিরেক্টরি (BD Citizen Links):** এনআইডি, ই-পাসপোর্ট, জন্ম ও মৃত্যু নিবন্ধন, ভূমির ই-পর্চা, আয়কর রিটার্ন এবং শিক্ষা বোর্ডের ভেরিফায়েড ৪০+ অফিশিয়াল সরকারি পোর্টাল লিংক।
+
+### ২. GreatOnlineTools.com অনুপ্রাণিত ফিচারসমূহ:
+- 🎬 **সোশ্যাল মিডিয়া ও ভাইরাল গ্রোথ টুলস:**
+  - **ইউটিউব থাম্বনেইল ডাউনলোডার:** 1080p Ultra HD, 720p, 480p কোয়ালিটিতে আসল থাম্বনেইল ১-ক্লিকে ডাউনলোড।
+  - **ইউটিউব ট্যাগ ও এসইও এক্সট্র্যাক্টর:** যেকোনো ভাইরাল ভিডিওর কিওয়ার্ড ও এসইও মেটাডাটা দেখা।
+  - **ইনস্টা মিডিয়া সেভার:** রিল ও পোস্ট প্রিভিউ ও মিডিয়া সাহায্যকারী।
+  - **হোয়াটসঅ্যাপ ডিরেক্ট মেসেজ লিংক মেকার:** নম্বর সেভ না করে মেসেজ পাঠানোর শর্টকাট লিংক।
+  - **বেনামী চ্যাট রুম (Anonymous Chat):** কোনো লগইন ছাড়া রুম কোড তৈরি করে বন্ধুদের সাথে রিয়েল-টাইম গোপন চ্যাট (Firebase চালিত)।
+  - **হার্টট্রেস - প্রপোজাল লিংক মেকার (HeartTrace):** ভালোবাসার মানুষকে মনের কথা বলতে ইন্টারঅ্যাক্টিভ লিংক যেখানে 'No' বাটনটি মাউস নিলেই সরে যায় এবং 'Yes' চাপলে কনফেটি সেলিব্রেশন হয়!
+  - **সিক্রেট সান্তা জেনারেটর:** নিরপেক্ষভাবে উপহার বিনিময়ের র্যান্ডম পেয়ার তৈরি।
+- 📈 **ক্যালকুলেটর ও ডেভেলপমেন্ট ইউটিলিটি:**
+  - **চক্রবৃদ্ধি মুনাফা ক্যালকুলেটর (Compound Interest):** মাসিক সঞ্চয়, মুনাফার হার এবং গ্রাফিক্যাল প্রগ্রেস বার সহ বাৎসরিক বিবরণী।
+  - **লোন ইএমআই ক্যালকুলেটর:** ব্যাংক ঋণের মাসিক কিস্তি ও মোট সুদের অনুপাত নির্ণয়।
+  - **বয়স ক্যালকুলেটর:** বছর, মাস, দিন, ঘণ্টা, মিনিট ও পরবর্তী জন্মদিনের কাউন্টডাউন।
+  - **জেসন বিউটিফায়ার ও ভ্যালিডেটর:** JSON কোড ফরম্যাটিং ও মিনিফায়ার।
+
+---
+
+## 🔒 ডেটা নিরাপত্তা ও ব্রাউজার প্রসেসিং
+
+- সমস্ত ফাইল ও ডকুমেন্ট প্রসেসিং আপনার নিজস্ব ব্রাউজারে ক্লায়েন্ট সাইড Web APIs (Canvas, Web Workers, jsPDF) দ্বারা ঘটে।
+- কোনো ব্যক্তিগত নথি বা ছবি আমাদের সার্ভারে আপলোড বা সংরক্ষিত হয় না।
+
+---
+
+## 🔥 ফায়ারবেস ইন্টিগ্রেশন (Firebase SDK Configured)
+
+আপনার প্রদত্ত ফায়ারবেস কনফিগ সরাসরি ইন্টিগ্রেট করা রয়েছে (`src/lib/firebase.ts`):
+- **Firebase Analytics (`G-2CF1KMNB4M`):** প্রতিটি পেজ ভিউ ও টুল ব্যবহারের রিয়েল-টাইম ট্র্যাকিং।
+- **Firestore Database (`tools-app-9b1ef`):** বেনামী চ্যাট রুম ও ইউজার ফিডব্যাক সংরক্ষণ।
+
+---
+
+## ⚡ ভার্সেল-এ বিনামূল্যে হোস্ট করার নিয়ম (Deploy to Vercel)
+
+১. প্রকল্পটি গিটহাবে পুশ করুন:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit for ToolKaj"
+   git branch -M main
+   git remote add origin https://github.com/your-username/toolkaj.git
+   git push -u origin main
+   ```
+২. [vercel.com](https://vercel.com)-এ গিয়ে আপনার গিটহাব একাউন্ট দিয়ে লগইন করুন।
+৩. **"Add New Project"** ক্লিক করে `toolkaj` রিপোজিটরিটি সিলেক্ট করুন।
+৪. কোনো বাড়তি কনফিগারেশন ছাড়াই **"Deploy"** বাটনে চাপ দিন। ১-২ মিনিটের মধ্যে আপনার সাইট লাইভ হয়ে যাবে!
+
+---
+
+## 🛠️ লোকাল পরিবেশে চালানোর নিয়ম
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ব্রাউজারে খুলুন: `http://localhost:3000`
