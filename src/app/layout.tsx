@@ -140,6 +140,24 @@ export default function RootLayout({
         <AppProvider>
           <FirebaseAnalyticsTracker />
           <Navbar />
+
+          {/* ========================================================================= */}
+          {/* ADSTERRA ADS - 468x60 BANNER (468x60_1) */}
+          {/* হেডারের নিচে এবং মূল কন্টেন্টের ঠিক উপরে ৪৬৮x৬০ ব্যানার অ্যাড */}
+          {/* ========================================================================= */}
+          <div className="w-full flex justify-center py-2 px-4 bg-transparent overflow-x-auto">
+            <div className="w-[468px] h-[60px] max-w-full flex justify-center items-center shrink-0">
+              <iframe
+                title="Adsterra 468x60 Banner"
+                width={468}
+                height={60}
+                style={{ border: "none", overflow: "hidden" }}
+                scrolling="no"
+                srcDoc={`<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:transparent;overflow:hidden;}</style></head><body><script type="text/javascript">atOptions={'key':'ccb85ec4cc697d352ae588c69ba5ae56','format':'iframe','height':60,'width':468,'params':{}};</script><script type="text/javascript" src="https://bauval.org/22/ccb85ec4cc697d352ae588c69ba5ae56"></script></body></html>`}
+              />
+            </div>
+          </div>
+
           <main className="flex-1">{children}</main>
 
           {/* ========================================================================= */}
