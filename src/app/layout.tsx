@@ -72,6 +72,7 @@ export const metadata: Metadata = {
 };
 
 import { AppProvider } from "@/context/AppContext";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -113,6 +114,25 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema()) }}
         />
+
+        {/* ========================================================================= */}
+        {/* ADSTERRA ADS - GLOBAL SCRIPTS (পপ-আন্ডার ও সোশ্যাল বার অ্যাড) */}
+        {/* ========================================================================= */}
+        {/* 1. Popunder_1: পুরো ওয়েবসাইটে ব্যাকগ্রাউন্ড পপ-আন্ডার অ‍্যাড */}
+        <Script
+          id="adsterra-popunder"
+          data-cfasync="false"
+          src="https://abscloud.org/1/815e86f4e08b36fd26cb38840d438e52"
+          strategy="afterInteractive"
+        />
+
+        {/* 2. SocialBar_1: পুরো ওয়েবসাইটে ফ্লোটিং সোশ্যাল বার / নোটিফিকেশন অ‍্যাড */}
+        <Script
+          id="adsterra-socialbar"
+          data-cfasync="false"
+          src="https://bauval.org/14/b4e79b61ef0a45407d04cc8876732764"
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans selection:bg-indigo-500 selection:text-white transition-colors duration-200`}
@@ -121,6 +141,22 @@ export default function RootLayout({
           <FirebaseAnalyticsTracker />
           <Navbar />
           <main className="flex-1">{children}</main>
+
+          {/* ========================================================================= */}
+          {/* ADSTERRA ADS - NATIVE BANNER (নেটিভ ব্যানার অ্যাড) */}
+          {/* কন্টেন্টের নিচে এবং ফুটারের ঠিক ওপরে রেসপন্সিভ ব্যানার হিসেবে প্রদর্শিত হবে */}
+          {/* ========================================================================= */}
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 my-2 flex flex-col items-center justify-center">
+            <div id="container-ee383bd1fcb1ced15a445150ab68a81b" className="w-full flex justify-center min-h-[90px]" />
+            <Script
+              id="adsterra-native-banner"
+              async
+              data-cfasync="false"
+              src="https://bauval.org/21/ee383bd1fcb1ced15a445150ab68a81b"
+              strategy="afterInteractive"
+            />
+          </div>
+
           <Footer />
         </AppProvider>
       </body>
