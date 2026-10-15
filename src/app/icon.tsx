@@ -3,10 +3,10 @@ import { ImageResponse } from "next/og";
 // Route segment config
 export const runtime = "edge";
 
-// Image metadata
+// Image metadata (Google requires multiples of 48px: 48, 96, 144, 192)
 export const size = {
-  width: 32,
-  height: 32,
+  width: 96,
+  height: 96,
 };
 export const contentType = "image/png";
 
@@ -16,7 +16,7 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 18,
+          fontSize: 52,
           background: "linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%)",
           width: "100%",
           height: "100%",
@@ -24,11 +24,11 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           color: "white",
-          borderRadius: 9,
+          borderRadius: 26,
           fontWeight: 900,
           fontFamily: "sans-serif",
-          letterSpacing: "-0.5px",
-          border: "1px solid rgba(255, 255, 255, 0.3)",
+          letterSpacing: "-1.5px",
+          border: "2px solid rgba(255, 255, 255, 0.4)",
         }}
       >
         TK

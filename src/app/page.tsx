@@ -106,7 +106,7 @@ export default function HomePage() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-indigo-200/80 dark:border-indigo-800/80 shadow-sm mb-6 animate-fade-in group hover:border-indigo-400 transition-colors">
             <LogoIcon size={18} className="shrink-0" />
             <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
-              {lang === "bn" ? "৫০+ ফ্রি অনলাইন টুলস — কোনো লগইন ছাড়াই" : "50+ Free Web Tools — No Login Required"}
+              {lang === "bn" ? "ToolKaj (টুলকাজ) — ৫০+ ফ্রি অনলাইন টুলস কোনো লগইন ছাড়াই" : "ToolKaj — 50+ Free Web Tools — No Login Required"}
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
           </div>

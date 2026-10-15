@@ -3,8 +3,8 @@ import { SITE_CONFIG } from "@/lib/seo-config";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${SITE_CONFIG.nameBn} - ${SITE_CONFIG.taglineBn}`,
-    short_name: SITE_CONFIG.name,
+    name: `ToolKaj (টুলকাজ) - ${SITE_CONFIG.taglineBn}`,
+    short_name: "ToolKaj",
     description: SITE_CONFIG.descriptionBn,
     start_url: "/",
     display: "standalone",
@@ -12,13 +12,23 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#6366f1",
     icons: [
       {
-        src: "/logo.svg",
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/logo.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        src: "/favicon.svg",
         sizes: "any",
         type: "image/svg+xml",
       },
       {
         src: "/favicon.ico",
-        sizes: "any",
+        sizes: "48x48",
         type: "image/x-icon",
       },
     ],

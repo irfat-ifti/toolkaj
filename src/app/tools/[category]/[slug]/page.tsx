@@ -50,6 +50,8 @@ import {
   toBengaliNumeral,
 } from "@/lib/bangla-converter";
 
+import ColorPickerPage from "@/app/tools/image/color-picker/page";
+
 interface PageProps {
   params: {
     category: string;
@@ -58,6 +60,10 @@ interface PageProps {
 }
 
 export default function GenericToolPage({ params }: PageProps) {
+  if (params.category === "image" && params.slug === "color-picker") {
+    return <ColorPickerPage />;
+  }
+
   const currentHref = `/tools/${params.category}/${params.slug}`;
   const tool = TOOLS_DATA.find((t) => t.href === currentHref);
   const { lang, t } = useApp();

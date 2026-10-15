@@ -46,8 +46,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: `${SITE_CONFIG.nameBn} - ${SITE_CONFIG.taglineBn}`,
-    template: `%s | ${SITE_CONFIG.nameBn}`,
+    default: `ToolKaj (টুলকাজ) - ${SITE_CONFIG.taglineBn}`,
+    template: `%s | ToolKaj (টুলকাজ)`,
   },
   description: SITE_CONFIG.descriptionBn,
   keywords: SITE_CONFIG.keywords,
@@ -72,21 +72,35 @@ export const metadata: Metadata = {
     type: "website",
     locale: SITE_CONFIG.localeBn,
     url: SITE_CONFIG.url,
-    title: `${SITE_CONFIG.nameBn} - ${SITE_CONFIG.taglineBn}`,
+    title: `ToolKaj (টুলকাজ) - ${SITE_CONFIG.taglineBn}`,
     description: SITE_CONFIG.descriptionBn,
-    siteName: SITE_CONFIG.name,
+    siteName: "ToolKaj",
+    images: [
+      {
+        url: `${SITE_CONFIG.url}/logo.png`,
+        width: 192,
+        height: 192,
+        alt: "ToolKaj Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_CONFIG.nameBn} - ${SITE_CONFIG.taglineBn}`,
+    title: `ToolKaj (টুলকাজ) - ${SITE_CONFIG.taglineBn}`,
     description: SITE_CONFIG.descriptionBn,
+    images: [`${SITE_CONFIG.url}/logo.png`],
   },
   icons: {
     icon: [
+      { url: "/icon", sizes: "96x96", type: "image/png" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.ico", sizes: "48x48" },
     ],
-    apple: "/logo.svg",
+    apple: [
+      { url: "/apple-icon", sizes: "192x192", type: "image/png" },
+      { url: "/logo.png", sizes: "192x192", type: "image/png" },
+    ],
     shortcut: "/favicon.svg",
   },
 };

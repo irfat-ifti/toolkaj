@@ -12,7 +12,15 @@ export const SITE_CONFIG = {
   localeBn: "bn_BD",
   localeEn: "en_US",
   keywords: [
+    "ToolKaj",
+    "toolkaj",
+    "টুলকাজ",
+    "toolkaj online tools",
+    "toolkaj bangladesh",
     "অনলাইন টুলস",
+    "কালার পিকার",
+    "image color picker from photo",
+    "ছবি থেকে কালার পিক",
     "pdf compress",
     "বিজয় ইউনিকোড কনভার্টার",
     "সরকারি চাকরির ছবির সাইজ ৩০০x৩০০",
@@ -61,10 +69,11 @@ export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE_CONFIG.nameBn,
-    alternateName: SITE_CONFIG.name,
+    name: "ToolKaj",
+    alternateName: ["টুলকাজ", "toolkaj", "ToolKaj - টুলকাজ"],
     url: SITE_CONFIG.url,
     logo: `${SITE_CONFIG.url}/logo.png`,
+    image: `${SITE_CONFIG.url}/logo.png`,
     description: SITE_CONFIG.descriptionBn,
     areaServed: ["BD", "IN", "Worldwide"],
     availableLanguage: ["Bengali", "English"],
@@ -75,10 +84,15 @@ export function getWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: SITE_CONFIG.nameBn,
-    alternateName: SITE_CONFIG.name,
+    name: "ToolKaj",
+    alternateName: [
+      "টুলকাজ",
+      "toolkaj",
+      "ToolKaj - টুলকাজ",
+      "ToolKaj BD",
+    ],
     url: SITE_CONFIG.url,
-    inLanguage: "bn-BD",
+    inLanguage: ["bn-BD", "en-US"],
     potentialAction: {
       "@type": "SearchAction",
       target: {

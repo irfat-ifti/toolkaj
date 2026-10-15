@@ -55,6 +55,11 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
+                <Link href="/tools/image/color-picker" className="hover:text-white transition-colors">
+                  {lang === "bn" ? "কালার পিকার ও প্যালেট স্টুডিও" : "Color Picker & Palette Studio"}
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools/image/govt-job-resizer" className="hover:text-white transition-colors">
                   {lang === "bn" ? "জব ছবি রিসাইজ (৩০০x৩০০)" : "Govt Job Photo Resizer"}
                 </Link>
