@@ -16,7 +16,7 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 20,
+          fontSize: 18,
           background: "linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%)",
           width: "100%",
           height: "100%",
@@ -24,10 +24,11 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           color: "white",
-          borderRadius: 8,
+          borderRadius: 9,
           fontWeight: 900,
           fontFamily: "sans-serif",
-          boxShadow: "0 2px 8px rgba(79, 70, 229, 0.4)",
+          letterSpacing: "-0.5px",
+          border: "1px solid rgba(255, 255, 255, 0.3)",
         }}
       >
         TK

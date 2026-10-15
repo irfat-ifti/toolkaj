@@ -1,19 +1,23 @@
-<svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="tk-fav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#4F46E5" />
       <stop offset="50%" stop-color="#7C3AED" />
       <stop offset="100%" stop-color="#EC4899" />
     </linearGradient>
-    <linearGradient id="tk-fav-accent" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06B6D4" />
-      <stop offset="100%" stop-color="#6366F1" />
+    <linearGradient id="tk-fav-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0" />
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#tk-fav-grad)" />
-  <path d="M11 13H37V17H11V13Z" fill="#FFFFFF" rx="2" />
-  <path d="M21 17H27V35H21V17Z" fill="#FFFFFF" rx="1" />
-  <path d="M27 24L36 15L39 18L30 27L27 24Z" fill="url(#tk-fav-accent)" />
-  <path d="M27 24L36.5 33.5L33.5 36.5L25 28L27 24Z" fill="#FFFFFF" />
-  <circle cx="24" cy="24" r="2.5" fill="#FFFFFF" />
+  <!-- Squircle Background -->
+  <rect x="2" y="2" width="44" height="44" rx="13" fill="url(#tk-fav-grad)" />
+  <rect x="2" y="2" width="44" height="44" rx="13" stroke="url(#tk-fav-glow)" stroke-width="1.5" />
+  
+  <!-- "TK" Bold Monogram -->
+  <text x="24" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="19" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">TK</text>
+  
+  <!-- Cyan Accent Sparkle / Status Dot -->
+  <circle cx="36" cy="12" r="3" fill="#38BDF8" />
+  <circle cx="36" cy="12" r="1.5" fill="#FFFFFF" />
 </svg>
