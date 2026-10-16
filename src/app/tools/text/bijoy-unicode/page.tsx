@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Copy, Check, Download, Trash2, ArrowRightLeft, Sparkles, Pin, ArrowRight, AlertTriangle } from "lucide-react";
 import { convertBijoyToUnicode, convertUnicodeToBijoy } from "@/lib/bangla-converter";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "text/bijoy-unicode")!;
 
 export default function BijoyUnicodePage() {
   const [direction, setDirection] = useState<"bijoyToUni" | "uniToBijoy">("bijoyToUni");
@@ -231,18 +235,8 @@ export default function BijoyUnicodePage() {
           </div>
         </div>
 
-        {/* SEO Guide info */}
-        <div className="mt-8 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
-            বিজয় এবং ইউনিকোড কনভার্টার কী এবং কেন প্রয়োজন?
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-            পুরনো মাইক্রোসফট ওয়ার্ড ফাইল, সরকারি দলিল ও সংবাদপত্রে দীর্ঘদিন ধরে বিজয় কিবোর্ডের SutonnyMJ ফন্ট ব্যবহার করা হয়ে আসছে। তবে ফেসবুক, ওয়েবসাইট বা মোবাইলে এই লেখা পেস্ট করলে অবোধ্য বা হিজিবিজি দেখায়।
-          </p>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            ToolKaj-এর এই কনভার্টারটি কোনো সার্ভার রিকোয়েস্ট ছাড়াই দ্রুততার সাথে বিজয়ের যুক্তবর্ণ ও প্রি-কারগুলোকে সঠিক ইউনিকোড ফন্টে রূপান্তর করে দেয়।
-          </p>
-        </div>
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

@@ -15,6 +15,10 @@ import {
 } from "lucide-react";
 import { PDFDocument } from "pdf-lib";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "pdf/compress")!;
 
 export default function CompressPdfPage() {
   const { lang, t } = useApp();
@@ -240,6 +244,9 @@ export default function CompressPdfPage() {
             </div>
           )}
         </div>
+
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

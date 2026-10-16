@@ -4,6 +4,10 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, CreditCard, Upload, Download, Check, RefreshCw, Sparkles, FileText } from "lucide-react";
 import jsPDF from "jspdf";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "pdf/nid-to-pdf")!;
 
 export default function NidToPdfPage() {
   const [frontImage, setFrontImage] = useState<string | null>(null);
@@ -305,6 +309,9 @@ export default function NidToPdfPage() {
             </div>
           )}
         </div>
+
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

@@ -25,6 +25,10 @@ import {
   Layers,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "image/color-picker")!;
 
 export interface ColorInfo {
   hex: string;
@@ -1959,6 +1963,9 @@ export default function ColorPickerPage() {
             </div>
           </div>
         </div>
+
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

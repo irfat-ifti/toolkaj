@@ -3,6 +3,10 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, Upload, Download, Check, AlertCircle, RefreshCw, ZoomIn, ZoomOut } from "lucide-react";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "image/govt-job-resizer")!;
 
 export default function GovtJobResizerPage() {
   const [activeTab, setActiveTab] = useState<"photo" | "signature">("photo");
@@ -315,17 +319,8 @@ export default function GovtJobResizerPage() {
           )}
         </div>
 
-        {/* Instructions & Guidelines */}
-        <div className="mt-8 bg-blue-50/60 dark:bg-slate-900 border border-blue-200/60 dark:border-slate-800 rounded-3xl p-6 sm:p-8">
-          <h3 className="font-bold text-base text-slate-900 dark:text-white mb-3">
-            টেলিটক ও সরকারি চাকরি আবেদনের প্রয়োজনীয় নির্দেশাবলী:
-          </h3>
-          <ul className="space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 list-disc list-inside">
-            <li><strong>ছবি (Photo):</strong> রেজোলিউশন অবশ্যই ৩০০ x ৩০০ পিক্সেল এবং ফাইল সাইজ সর্বোচ্চ ১০০ KB হতে হবে। ছবির ব্যাকগ্রাউন্ড হালকা বা সাদা রাখা উত্তম।</li>
-            <li><strong>স্বাক্ষর (Signature):</strong> রেজোলিউশন অবশ্যই ৩০০ x ৮০ পিক্সেল এবং ফাইল সাইজ সর্বোচ্চ ৬০ KB হতে হবে। সাদা কাগজে স্পষ্ট কালো কালির কলমে স্বাক্ষর করে আপলোড করবেন।</li>
-            <li>আমাদের এই টুলটি স্বয়ংক্রিয়ভাবে সাদা ব্যাকগ্রাউন্ড ও সরকারি সঠিক রেশিও বজায় রাখে।</li>
-          </ul>
-        </div>
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

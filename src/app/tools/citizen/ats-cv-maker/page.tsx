@@ -23,6 +23,10 @@ import {
 } from "lucide-react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import ToolSeoSection from "@/components/ToolSeoSection";
+import { TOOLS_DATA } from "@/lib/tools-data";
+
+const tool = TOOLS_DATA.find((t) => t.slug === "citizen/ats-cv-maker")!;
 
 export default function AtsCvMakerPage() {
   const [personal, setPersonal] = useState({
@@ -721,6 +725,9 @@ export default function AtsCvMakerPage() {
             </div>
           </div>
         </div>
+
+        {/* Rich SEO Content, Step-by-Step Guide, Specifications & FAQs */}
+        <ToolSeoSection tool={tool} />
       </div>
     </div>
   );

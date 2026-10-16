@@ -51,6 +51,7 @@ import {
 } from "@/lib/bangla-converter";
 
 import ColorPickerPage from "@/app/tools/image/color-picker/page";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 interface PageProps {
   params: {
@@ -1925,6 +1926,9 @@ export default function GenericToolPage({ params }: PageProps) {
             </div>
           )}
         </div>
+
+        {/* Dynamic Rich SEO & Helpful Content Section */}
+        {tool && <ToolSeoSection tool={tool} />}
       </div>
     </div>
   );
