@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, Images, Upload, Download, Trash2, RefreshCw, FileText } from "lucide-react";
 import jsPDF from "jspdf";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 interface UploadedImage {
   id: string;
@@ -241,6 +242,9 @@ export default function ImageToPdfPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="pdf/image-to-pdf" />
       </div>
     </div>
   );

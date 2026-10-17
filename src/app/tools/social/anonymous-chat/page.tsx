@@ -14,6 +14,7 @@ import {
   serverTimestamp,
   limit,
 } from "firebase/firestore";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 interface Message {
   id: string;
@@ -315,6 +316,9 @@ export default function AnonymousChatPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="social/anonymous-chat" />
       </div>
     </div>
   );

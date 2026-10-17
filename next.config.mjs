@@ -36,6 +36,13 @@ const nextConfig = {
       ],
     },
   ],
+  redirects: async () => [
+    {
+      source: "/:category(pdf|image|text|video|social|citizen|utilities)/:slug*",
+      destination: "/tools/:category/:slug*",
+      permanent: true,
+    },
+  ],
   eslint: {
     ignoreDuringBuilds: true,
   },

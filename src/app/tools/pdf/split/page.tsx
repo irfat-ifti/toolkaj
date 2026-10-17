@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { PDFDocument } from "pdf-lib";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function SplitPdfPage() {
   const { lang, t } = useApp();
@@ -290,6 +291,9 @@ export default function SplitPdfPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="pdf/split" />
       </div>
     </div>
   );

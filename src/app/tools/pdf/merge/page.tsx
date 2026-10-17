@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { PDFDocument } from "pdf-lib";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 interface UploadedFile {
   id: string;
@@ -320,6 +321,9 @@ export default function MergePdfPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="pdf/merge" />
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function ImageConverterPage() {
   const { lang, t } = useApp();
@@ -236,6 +237,9 @@ export default function ImageConverterPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="image/convert" />
       </div>
     </div>
   );

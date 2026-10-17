@@ -51,6 +51,12 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.descriptionBn,
   keywords: SITE_CONFIG.keywords,
+  applicationName: "ToolKaj",
+  appleWebApp: {
+    title: "ToolKaj",
+    capable: true,
+    statusBarStyle: "default",
+  },
   authors: [{ name: SITE_CONFIG.author, url: SITE_CONFIG.url }],
   creator: SITE_CONFIG.name,
   publisher: SITE_CONFIG.name,
@@ -113,6 +119,11 @@ export default function RootLayout({
   return (
     <html lang="bn" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        {/* Google Site Name & Brand Meta Tags */}
+        <meta property="og:site_name" content="ToolKaj" />
+        <meta name="application-name" content="ToolKaj" />
+        <meta name="apple-mobile-web-app-title" content="ToolKaj" />
+
         {/* Preconnect & DNS-Prefetch for high-speed third-party resource negotiation */}
         <link rel="preconnect" href="https://abscloud.org" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://bauval.org" crossOrigin="anonymous" />
@@ -133,24 +144,6 @@ export default function RootLayout({
               } catch (_) {}
             `,
           }}
-        />
-
-        {/* Schema.org Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(getSoftwareAppSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(getFaqSchema()) }}
         />
 
         {/* ========================================================================= */}

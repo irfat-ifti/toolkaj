@@ -19,6 +19,7 @@ import {
   Grid,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function BackgroundRemoverPage() {
   const { lang, t } = useApp();
@@ -429,6 +430,9 @@ export default function BackgroundRemoverPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="image/background-remover" />
       </div>
     </div>
   );

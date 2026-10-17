@@ -1,6 +1,7 @@
 import { ToolItem, TOOLS_DATA } from "./tools-data";
 import { SITE_CONFIG } from "./seo-config";
 import { Metadata } from "next";
+import { getSeoData, getPageMetadata, getToolStructuredData } from "@/config/seoRegistry";
 
 export interface ToolFaq {
   question: string;
@@ -481,6 +482,44 @@ export const DETAILED_TOOL_SEO: Record<string, ToolSeoDetail> = {
  * Helper to get SEO detail for any tool (dedicated or generic)
  */
 export function getToolSeoDetail(tool: ToolItem): ToolSeoDetail {
+  const regItem = getSeoData(tool.slug || tool.href);
+  if (regItem) {
+    return {
+      slug: regItem.slug || tool.slug,
+      targetTitle: regItem.h1 || `${tool.titleBn} (${tool.titleEn})`,
+      metaTitle: regItem.title,
+      metaDesc: regItem.description,
+      primaryKeywords: regItem.keywords,
+      introTitle: regItem.h1,
+      introDesc: regItem.subtitle || regItem.description,
+      whyUse: regItem.whyUse || [
+        "১০০% সম্পূর্ণ ফ্রি এবং কোনো ধরনের চার্জ বা সাবস্ক্রিপশন নেই।",
+        "ব্রাউজারেই কাজ করে, ডিভাইসে আলাদা কোনো সফটওয়্যার বা অ্যাপ ইনস্টল করার প্রয়োজন নেই।",
+        "আপনার ফাইল ও ডাটা সম্পূর্ণ নিরাপদ ও গোপনীয় থাকে।",
+        "মোবাইল ও পিসিতে দ্রুত গতিতে কাজ করে।",
+      ],
+      steps: regItem.howToSteps || [
+        { title: "ধাপ ১: ফাইল আপলোড বা তথ্য ইনপুট", desc: "উপরে থাকা টুলে আপনার প্রয়োজনীয় ফাইল দিন বা টেক্সট লিখুন।" },
+        { title: "ধাপ ২: প্রসেস বা কনভার্ট করুন", desc: "নির্দিষ্ট অপশন নির্বাচন করে অ্যাকশন বাটনে ক্লিক করুন।" },
+        { title: "ধাপ ৩: ফলাফল সংগ্রহ করুন", desc: "প্রস্তুতকৃত ফলাফল সরাসরি ডাউনলোড বা কপি করে ব্যবহার করুন।" },
+      ],
+      specifications: regItem.specifications || [
+        { label: "টুলের ধরণ", value: tool.categoryBn },
+        { label: "ব্যবহারের খরচ", value: "সম্পূর্ণ বিনামূল্যে (Free)" },
+        { label: "প্ল্যাটফর্ম", value: "ওয়েব ব্রাউজার (মোবাইল ও ডেস্কটপ)" },
+      ],
+      limitations: regItem.limitations || [
+        "অত্যধিক বড় ফাইল আপলোডের ক্ষেত্রে আপনার ডিভাইসের র‍্যাম ও ব্রাউজার মেমোরির ওপর নির্ভর করবে।",
+      ],
+      faqs: regItem.faqs || [
+        {
+          question: `এই ${tool.titleBn} টুলটি ব্যবহার করতে কি কোনো একাউন্ট প্রয়োজন?`,
+          answer: "না, ToolKaj-এর সব টুলস সম্পূর্ণ বিনামূল্যে এবং কোনো রেজিস্ট্রেশন বা লগইন ছাড়াই তাৎক্ষণিক ব্যবহার করা যায়।",
+        },
+      ],
+    };
+  }
+
   if (DETAILED_TOOL_SEO[tool.slug]) {
     return DETAILED_TOOL_SEO[tool.slug];
   }
@@ -539,56 +578,18 @@ export function getToolSeoDetail(tool: ToolItem): ToolSeoDetail {
  * Generate full next.js Metadata object with high CTR for any tool
  */
 export function buildToolMetadata(tool: ToolItem): Metadata {
-  const seo = getToolSeoDetail(tool);
-  const canonicalUrl = `${SITE_CONFIG.url}${tool.href}`;
-
-  return {
-    title: seo.metaTitle,
-    description: seo.metaDesc,
-    keywords: seo.primaryKeywords,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      title: seo.metaTitle,
-      description: seo.metaDesc,
-      url: canonicalUrl,
-      siteName: SITE_CONFIG.name,
-      locale: SITE_CONFIG.localeBn,
-      type: "website",
-      images: [
-        {
-          url: `${SITE_CONFIG.url}/logo.png`,
-          width: 192,
-          height: 192,
-          alt: `${tool.titleBn} - ToolKaj`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.metaTitle,
-      description: seo.metaDesc,
-      images: [`${SITE_CONFIG.url}/logo.png`],
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-  };
+  return getPageMetadata(tool.slug || tool.href);
 }
 
 /**
  * Generate Schema.org JSON-LD for rich snippets (SoftwareApp + HowTo + FAQ + Breadcrumbs)
  */
 export function buildToolStructuredData(tool: ToolItem) {
+  const regItem = getSeoData(tool.slug || tool.href);
+  if (regItem) {
+    return getToolStructuredData(regItem);
+  }
+
   const seo = getToolSeoDetail(tool);
   const canonicalUrl = `${SITE_CONFIG.url}${tool.href}`;
 
@@ -598,8 +599,8 @@ export function buildToolStructuredData(tool: ToolItem) {
     "@type": "SoftwareApplication",
     name: `${tool.titleBn} (${tool.titleEn})`,
     url: canonicalUrl,
-    operatingSystem: "Web Browser",
     applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Web Browser",
     description: seo.metaDesc,
     offers: {
       "@type": "Offer",

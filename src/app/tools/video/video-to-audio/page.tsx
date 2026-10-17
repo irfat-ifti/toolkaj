@@ -16,6 +16,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function VideoToAudioPage() {
   const { lang, t } = useApp();
@@ -295,6 +296,9 @@ export default function VideoToAudioPage() {
             </div>
           )}
         </div>
+
+        {/* SEO Knowledge & FAQ Section */}
+        <ToolSeoSection toolSlug="video/video-to-audio" />
       </div>
     </div>
   );

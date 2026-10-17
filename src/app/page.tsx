@@ -93,8 +93,60 @@ export default function HomePage() {
   const pinnedTools = TOOLS_DATA.filter((t) => pinnedToolIds.includes(t.id));
   const featuredTools = TOOLS_DATA.filter((t) => t.featured);
 
+  const websiteAndOrgSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://toolkaj.vercel.app/#website",
+        "name": "ToolKaj",
+        "alternateName": ["টুলকাজ", "ToolKaj Online Tools", "ToolKaj BD", "toolkaj.vercel.app"],
+        "url": "https://toolkaj.vercel.app/",
+        "inLanguage": ["bn-BD", "en-US"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://toolkaj.vercel.app/tools?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://toolkaj.vercel.app/#organization",
+        "name": "ToolKaj",
+        "url": "https://toolkaj.vercel.app/",
+        "description": "বাংলাদেশের সেরা ও দ্রুততম ফ্রি অনলাইন টুলস প্ল্যাটফর্ম — PDF, ইমেজ, টেক্সট, ভিডিও এবং সোশ্যাল মিডিয়া টুলস।"
+      }
+    ]
+  };
+
+  const homeFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": HOME_FAQS.map((faq) => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="w-full">
+      {/* Official Google WebSite & Organization Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteAndOrgSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }}
+      />
+
       {/* --- HERO SECTION --- */}
       <section className="relative overflow-hidden bg-gradient-to-b from-indigo-50/60 via-purple-50/30 to-white dark:from-slate-900 dark:via-slate-900/60 dark:to-slate-950 py-16 sm:py-24 border-b border-slate-200/60 dark:border-slate-800">
         {/* Glow ambient background circles */}

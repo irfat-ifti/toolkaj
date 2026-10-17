@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Video, Download, Copy, Check, ExternalLink, Image as ImageIcon } from "lucide-react";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function YouTubeThumbnailPage() {
   const [url, setUrl] = useState("");
@@ -205,6 +206,9 @@ export default function YouTubeThumbnailPage() {
             </div>
           </div>
         )}
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="social/youtube-thumbnail" />
       </div>
     </div>
   );

@@ -17,6 +17,7 @@ import {
   StopCircle,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function VideoSpeedVolumePage() {
   const { lang, t } = useApp();
@@ -437,6 +438,9 @@ export default function VideoSpeedVolumePage() {
             </div>
           )}
         </div>
+
+        {/* SEO Knowledge & FAQ Section */}
+        <ToolSeoSection toolSlug="video/speed-volume" />
       </div>
     </div>
   );

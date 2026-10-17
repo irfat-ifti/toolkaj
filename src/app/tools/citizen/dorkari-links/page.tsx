@@ -36,6 +36,7 @@ import {
   Share2,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 import {
   ALL_DORKARI_LINKS,
   DORKARI_CATEGORIES,
@@ -656,6 +657,9 @@ export default function DorkariLinksPage() {
             </div>
           </div>
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="citizen/dorkari-links" />
       </div>
 
       {/* Floating Toast Notification */}

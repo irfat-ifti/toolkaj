@@ -21,6 +21,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function VideoCompressPage() {
   const { lang, t } = useApp();
@@ -569,6 +570,9 @@ export default function VideoCompressPage() {
             </div>
           )}
         </div>
+
+        {/* SEO Knowledge & FAQ Section */}
+        <ToolSeoSection toolSlug="video/compress" />
       </div>
     </div>
   );

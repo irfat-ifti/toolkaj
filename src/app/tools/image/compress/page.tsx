@@ -16,6 +16,7 @@ import {
   Sliders,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function ImageCompressPage() {
   const { lang, t } = useApp();
@@ -351,6 +352,9 @@ export default function ImageCompressPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="image/compress" />
       </div>
     </div>
   );

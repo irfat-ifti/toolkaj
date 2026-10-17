@@ -16,6 +16,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 type Position = "tl" | "tc" | "tr" | "ml" | "center" | "mr" | "bl" | "bc" | "br" | "tile";
 
@@ -308,6 +309,9 @@ export default function ImageWatermarkPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="image/watermark" />
       </div>
     </div>
   );

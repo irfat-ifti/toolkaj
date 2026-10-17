@@ -38,31 +38,11 @@ export const SITE_CONFIG = {
   ],
 };
 
-export function generateToolMetadata(tool: ToolItem) {
-  const title = `${tool.titleBn} (${tool.titleEn}) — ১০০% ফ্রি অনলাইন টুল | ToolKaj`;
-  const description = `${tool.descBn} ব্রাউজারেই সরাসরি প্রসেসিং হয়, কোনো রেজিস্ট্রেশন বা চার্জ ছাড়াই সম্পূর্ণ বিনামূল্যে ব্যবহার করুন।`;
+import { getPageMetadata } from "@/config/seoRegistry";
 
-  return {
-    title,
-    description,
-    keywords: [...tool.keywords, ...SITE_CONFIG.keywords],
-    alternates: {
-      canonical: `${SITE_CONFIG.url}${tool.href}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE_CONFIG.url}${tool.href}`,
-      siteName: SITE_CONFIG.name,
-      locale: SITE_CONFIG.localeBn,
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-  };
+export function generateToolMetadata(tool: ToolItem) {
+  const slugKey = tool.slug || tool.href.replace(/^\/tools\//, "");
+  return getPageMetadata(slugKey);
 }
 
 export function getOrganizationSchema() {

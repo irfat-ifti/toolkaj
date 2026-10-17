@@ -19,26 +19,10 @@ export function generateStaticParams() {
   }));
 }
 
+import { getPageMetadata } from "@/config/seoRegistry";
+
 export function generateMetadata({ params }: CategoryPageProps): Metadata {
-  const cat = CATEGORIES.find((c) => c.id === params.id);
-  if (!cat) return { title: "Category Not Found" };
-
-  const title = `${cat.nameBn} (${cat.nameEn}) — সেরা অনলাইন টুলস | ${SITE_CONFIG.name}`;
-  const description = `${cat.nameBn} ক্যাটাগরির সমস্ত দরকারি অনলাইন টুলস ব্রাউজারেই সরাসরি ব্যবহার করুন। ১০০% ফ্রি এবং নিরাপদ।`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `${SITE_CONFIG.url}/category/${cat.id}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE_CONFIG.url}/category/${cat.id}`,
-      type: "website",
-    },
-  };
+  return getPageMetadata(`category/${params.id}`);
 }
 
 import CategoryClientView from "@/components/CategoryClientView";

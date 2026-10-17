@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, QrCode, Download, Copy, Check, Sparkles, Wifi, Globe, Phone, Mail, FileText } from "lucide-react";
 import QRCode from "qrcode";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function QrCodePage() {
   const [qrType, setQrType] = useState<"url" | "text" | "wifi" | "phone" | "email">("url");
@@ -326,6 +327,9 @@ export default function QrCodePage() {
             </div>
           </div>
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="image/qr-code" />
       </div>
     </div>
   );

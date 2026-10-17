@@ -18,6 +18,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function YouTubeTagsPage() {
   const { lang, t } = useApp();
@@ -343,6 +344,9 @@ export default function YouTubeTagsPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="social/youtube-tags" />
       </div>
     </div>
   );

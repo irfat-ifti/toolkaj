@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, TrendingUp, DollarSign, Calendar, RefreshCw, Sparkles } from "lucide-react";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function CompoundInterestPage() {
   const [initialPrincipal, setInitialPrincipal] = useState(100000);
@@ -241,6 +242,9 @@ export default function CompoundInterestPage() {
             </div>
           </div>
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="utilities/compound-interest" />
       </div>
     </div>
   );

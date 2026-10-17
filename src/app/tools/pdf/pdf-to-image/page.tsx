@@ -17,6 +17,7 @@ import {
   Layers,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 interface RenderedPage {
   pageNumber: number;
@@ -394,6 +395,9 @@ export default function PdfToImagePage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="pdf/pdf-to-image" />
       </div>
     </div>
   );

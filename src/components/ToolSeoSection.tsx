@@ -11,28 +11,43 @@ import {
   Layers,
   ArrowRight,
   BookOpen,
+  Tag,
+  Sparkles,
 } from "lucide-react";
 import { ToolItem, TOOLS_DATA } from "@/lib/tools-data";
-import { getToolSeoDetail, buildToolStructuredData } from "@/lib/tool-seo-content";
+import { getSeoData, getToolStructuredData, PageSeoItem } from "@/config/seoRegistry";
 import DynamicIcon from "@/components/DynamicIcon";
 
 interface ToolSeoSectionProps {
-  tool: ToolItem;
+  tool?: ToolItem;
+  toolSlug?: string;
+  toolKey?: string;
 }
 
-export default function ToolSeoSection({ tool }: ToolSeoSectionProps) {
-  const seo = getToolSeoDetail(tool);
-  const schemas = buildToolStructuredData(tool);
+export default function ToolSeoSection({ tool, toolSlug, toolKey }: ToolSeoSectionProps) {
+  const identifier = toolSlug || toolKey || tool?.slug || tool?.href || "";
+  const seo = getSeoData(identifier);
+
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Related tools from the same or popular categories
+  if (!seo) {
+    return null;
+  }
+
+  const schemas = getToolStructuredData(seo);
+
+  // Display 6 to 8 related tools for deep internal link equity pass
+  const currentCategory = seo.category || tool?.category;
+  const currentSlug = seo.slug || tool?.slug;
   const relatedTools = TOOLS_DATA.filter(
-    (t) => t.id !== tool.id && (t.category === tool.category || t.popular)
-  ).slice(0, 4);
+    (t) => t.slug !== currentSlug && (t.category === currentCategory || t.popular)
+  ).slice(0, 8);
+
+  const toolTitleBn = tool?.titleBn || seo.h1.split("—")[0].trim() || "টুল";
 
   return (
     <section className="w-full mt-16 pt-12 border-t border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200">
-      {/* Schema.org Structured Data */}
+      {/* Schema.org Structured Data (WebApplication, BreadcrumbList, HowTo, FAQPage) */}
       {schemas.map((schemaObj, i) => (
         <script
           key={i}
@@ -50,19 +65,25 @@ export default function ToolSeoSection({ tool }: ToolSeoSectionProps) {
           </div>
 
           <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mb-4 leading-snug">
-            {seo.introTitle}
+            {seo.h1}
           </h2>
 
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-            {seo.introDesc}
+            {seo.subtitle || seo.description}
           </p>
 
-          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-            <span>কেন ToolKaj-এর {tool.titleBn} ব্যবহার করবেন?</span>
-          </h3>
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-indigo-500" />
+            <span>কেন ToolKaj-এর {toolTitleBn} সেরা? (Key Features & Benefits)</span>
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {seo.whyUse.map((reason, idx) => (
+            {(seo.whyUse || [
+              "১০০% সম্পূর্ণ ফ্রি এবং কোনো ধরনের চার্জ বা সাবস্ক্রিপশন ফি নেই।",
+              "সরাসরি আপনার ব্রাউজারে ক্লায়েন্ট-সাইড প্রসেসিং—আপনার কোনো ফাইল বা তথ্য সার্ভারে আপলোড হয় না।",
+              "কোনো সফটওয়্যার বা অ্যাপ ইনস্টল ছাড়াই মোবাইল ও পিসির যেকোনো ব্রাউজারে দ্রুত কাজ করে।",
+              "কোনো ওয়াটারমার্ক বা রেজিস্ট্রেশনের বাধ্যবাধকতা নেই, আনলিমিটেড ব্যবহারযোগ্য।"
+            ]).map((reason, idx) => (
               <div
                 key={idx}
                 className="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/60 text-xs sm:text-sm text-slate-700 dark:text-slate-300"
@@ -75,92 +96,101 @@ export default function ToolSeoSection({ tool }: ToolSeoSectionProps) {
         </div>
 
         {/* 2. Step-by-Step How-To Guide */}
-        <div>
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">
-              ধাপে ধাপে ব্যবহারের নিয়ম
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-              খুব সহজেই মাত্র কয়েকটি সহজ ধাপে কাজটি সম্পন্ন করুন
-            </p>
-          </div>
+        {seo.howToSteps && seo.howToSteps.length > 0 && (
+          <div>
+            <div className="text-center max-w-xl mx-auto mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                টুলটি কীভাবে কাজ করে? (How to Use {toolTitleBn})
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                খুব সহজেই মাত্র কয়েকটি সহজ ধাপে কাজটি দ্রুত সম্পন্ন করুন
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {seo.steps.map((step, idx) => (
-              <div
-                key={idx}
-                className="relative bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-bold text-xs flex items-center justify-center mb-3.5 shadow-sm shadow-indigo-500/20">
-                    {idx + 1}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {seo.howToSteps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className="relative bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white font-bold text-xs flex items-center justify-center mb-3.5 shadow-sm shadow-indigo-500/20">
+                      {idx + 1}
+                    </div>
+                    <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-2 leading-snug">
+                      {step.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {step.desc}
+                    </p>
                   </div>
-                  <h3 className="font-bold text-sm text-slate-900 dark:text-white mb-2 leading-snug">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 3. Official Specifications & Limitations */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Specifications Table */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-sm">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-indigo-500" />
-              <span>প্রযুক্তিগত স্পেসিফিকেশন</span>
-            </h3>
-
-            <div className="divide-y divide-slate-100 dark:divide-slate-800 text-xs sm:text-sm">
-              {seo.specifications.map((spec, idx) => (
-                <div key={idx} className="py-2.5 flex items-center justify-between gap-4">
-                  <span className="text-slate-500 dark:text-slate-400 font-medium">
-                    {spec.label}
-                  </span>
-                  <span className="text-slate-900 dark:text-white font-semibold text-right">
-                    {spec.value}
-                  </span>
                 </div>
               ))}
             </div>
           </div>
+        )}
 
-          {/* Limitations & Guidelines */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
-            <div>
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-amber-500" />
-                <span>সতর্কতা ও আউটপুট সীমাবদ্ধতা</span>
-              </h3>
+        {/* 3. Official Specifications & Limitations (if available) */}
+        {(seo.specifications || seo.limitations) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Specifications Table */}
+            {seo.specifications && (
+              <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-sm">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-indigo-500" />
+                  <span>প্রযুক্তিগত স্পেসিফিকেশন ও মানদণ্ড</span>
+                </h3>
 
-              <div className="space-y-3">
-                {seo.limitations.map((lim, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
-                    <span>{lim}</span>
-                  </div>
-                ))}
+                <div className="divide-y divide-slate-100 dark:divide-slate-800 text-xs sm:text-sm">
+                  {seo.specifications.map((spec, idx) => (
+                    <div key={idx} className="py-2.5 flex items-center justify-between gap-4">
+                      <span className="text-slate-500 dark:text-slate-400 font-medium">
+                        {spec.label}
+                      </span>
+                      <span className="text-slate-900 dark:text-white font-semibold text-right">
+                        {spec.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Limitations & Guidelines */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-amber-500" />
+                  <span>সতর্কতা ও আউটপুট নির্দেশিকা</span>
+                </h3>
+
+                <div className="space-y-3">
+                  {(seo.limitations || [
+                    "সর্বোত্তম ফলাফলের জন্য পরিষ্কার ও সঠিক ফরম্যাটের ইনপুট প্রদান করুন।",
+                    "ফাইল প্রসেসিং সরাসরি আপনার ব্রাউজারের মেমোরিতে সম্পন্ন হয়।"
+                  ]).map((lim, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2" />
+                      <span>{lim}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Privacy Box */}
+              <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3 text-xs text-emerald-700 dark:text-emerald-400">
+                <ShieldCheck className="w-5 h-5 shrink-0" />
+                <span>১০০% প্রাইভেট ও ক্লায়েন্ট-সাইড প্রসেসিং—আপনার কোনো ফাইল বা তথ্য সার্ভারে যায় না।</span>
               </div>
             </div>
-
-            {/* Privacy Box */}
-            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center gap-3 text-xs text-emerald-700 dark:text-emerald-400">
-              <ShieldCheck className="w-5 h-5 shrink-0" />
-              <span>১০০% প্রাইভেট ও ক্লায়েন্ট-সাইড প্রসেসিং—আপনার কোনো ফাইল সার্ভারে যায় না।</span>
-            </div>
           </div>
-        </div>
+        )}
 
         {/* 4. Frequently Asked Questions (FAQ) */}
-        {seo.faqs.length > 0 && (
+        {seo.faqs && seo.faqs.length > 0 && (
           <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm">
             <div className="max-w-xl mx-auto text-center mb-8">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-2">
@@ -168,7 +198,7 @@ export default function ToolSeoSection({ tool }: ToolSeoSectionProps) {
                 <span>সাধারণ প্রশ্নোত্তর</span>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
-                সচরাচর জিজ্ঞাসিত প্রশ্ন (FAQ)
+                সচরাচর জিজ্ঞাসিত প্রশ্নাবলী (Frequently Asked Questions - FAQ)
               </h2>
             </div>
 
@@ -203,22 +233,50 @@ export default function ToolSeoSection({ tool }: ToolSeoSectionProps) {
           </div>
         )}
 
-        {/* 5. Related Tools (Internal SEO Linking) */}
+        {/* 5. Visible "Popular Search Tags / জনপ্রিয় সার্চ ট্যাগসমূহ" Section */}
+        {seo.keywords && seo.keywords.length > 0 && (
+          <section
+            aria-label="জনপ্রিয় সার্চ ট্যাগসমূহ"
+            className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <Tag className="w-4 h-4 text-indigo-500" />
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                জনপ্রিয় সার্চ ট্যাগ ও কিওয়ার্ডসমূহ (Popular Search Tags)
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">
+              ব্যবহারকারীরা সাধারণত নিচের কিওয়ার্ড ও বিষয়গুলো দিয়ে এই অনলাইন টুলটি অনুসন্ধান করে থাকেন:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {seo.keywords.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-50 dark:bg-slate-800/70 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700/60 hover:border-indigo-300 dark:hover:border-indigo-600/50 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 6. Related Tools (Internal SEO Linking Grid) */}
         <div>
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                সম্পর্কিত অন্যান্য দরকারি টুলস
+                অন্যান্য প্রয়োজনীয় টুলস (Related Online Tools)
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                আপনার কাজের সুবিধার জন্য আরও কিছু জনপ্রিয় ফ্রি টুলস
+                আপনার কাজের সুবিধার জন্য আরও কিছু দরকারি ফ্রি ডিজিটাল টুলস
               </p>
             </div>
             <Link
               href="/tools"
               className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
             >
-              <span>সব টুলস</span>
+              <span>সবগুলো টুলস দেখুন</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

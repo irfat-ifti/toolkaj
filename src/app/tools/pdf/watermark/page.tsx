@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { PDFDocument, rgb, degrees, StandardFonts } from "pdf-lib";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 export default function WatermarkPdfPage() {
   const { lang, t } = useApp();
@@ -312,6 +313,9 @@ export default function WatermarkPdfPage() {
             </div>
           )}
         </div>
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="pdf/watermark" />
       </div>
     </div>
   );

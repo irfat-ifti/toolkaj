@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Heart, Sparkles, Copy, Check, Share2, Play, Flame, Send, PartyPopper } from "lucide-react";
 import confetti from "canvas-confetti";
 import { useApp } from "@/context/AppContext";
+import ToolSeoSection from "@/components/ToolSeoSection";
 
 const DODGE_TEXTS = [
   "No",
@@ -367,6 +368,9 @@ export default function HeartTracePage() {
             </div>
           </div>
         )}
+
+        {/* SEO On-Page Content, FAQs, and Search Tag Badges */}
+        <ToolSeoSection toolSlug="social/heart-trace" />
       </div>
     </div>
   );
